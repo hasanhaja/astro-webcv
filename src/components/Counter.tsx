@@ -1,7 +1,7 @@
 import { ParentComponent, createSignal } from 'solid-js';
 
-const Counter: ParentComponent<{}> = () => {
-	const [count, setCount] = createSignal(0);
+const Counter: ParentComponent<{start: number}> = (props) => {
+	const [count, setCount] = createSignal(props.start);
 	const add = () => setCount(count() + 1);
 	const subtract = () => setCount(count() - 1);
 
