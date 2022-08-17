@@ -41,7 +41,6 @@ export async function get({request: req}) {
 
     if (!data) {
       // TODO Handle this error properly
-      console.log("no data");
       throw new Error("No data found");
     }
   
@@ -49,8 +48,7 @@ export async function get({request: req}) {
       status: 200
     });
   } catch (ex) {
-    console.log("really no data");
-    return new Response(null, {
+    return new Response(JSON.stringify({status: 404, reason: "No data found"}), {
       status: 404,
       statusText: "No data found",
     });
