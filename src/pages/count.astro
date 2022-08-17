@@ -1,8 +1,10 @@
 ---
+import Content from "../components/Content.astro";
 import Counter from "../components/Counter";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Counter">
+  <Content>Let's count!</Content>
   <Counter start={-4} client:visible />
 </BaseLayout>

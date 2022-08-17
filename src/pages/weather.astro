@@ -1,7 +1,11 @@
 ---
+import Content from "../components/Content.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Weather">
-  <div>Weather</div>
+  <Content>
+    <h1 class="text-2xl mb-2">🌤 Weather Search</h1>
+    <p>What's the weather like? 🤔</p>
+  </Content>
 </BaseLayout>
