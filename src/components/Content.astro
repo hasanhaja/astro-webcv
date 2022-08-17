@@ -1,0 +1,7 @@
+---
+const { bgColor = "bg-gray-200" } = Astro.props;
+---
+
+<div class={`${bgColor} rounded-md p-10 mb-2`}>
+  <slot />
+</div>
