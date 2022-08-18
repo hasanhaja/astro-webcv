@@ -1,9 +1,12 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-
+// TODO This could be replaced with vercel/edge later
+import vercel from '@astrojs/vercel/serverless';
 import solidJs from "@astrojs/solid-js";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), solidJs()]
+  integrations: [tailwind(), solidJs()],
+  output: 'server',
+  adapter: vercel()
 });
