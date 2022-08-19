@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 import { Form, FormType } from "../schema/Form";
 
 type SearcherProps = {
@@ -7,7 +7,6 @@ type SearcherProps = {
 
 const Searcher = ({ handleSubmit }: SearcherProps) => {
   const [formData, setFormData] = createSignal<FormType>("");
-  // TODO City does not exist error
   const [error, setError] = createSignal(false);
   return (
     <form
@@ -19,10 +18,10 @@ const Searcher = ({ handleSubmit }: SearcherProps) => {
       }}
     >
       <fieldset
-        class="bg-red-200 border-4 flex h-auto rounded-md"
+        class="bg-gray-200 border-4 flex h-auto rounded-md gap-1"
       >
         <input
-          class="flex-grow-1 p-4"
+          class="flex-grow p-4 rounded-md"
           type="text"
           id="city"
           name="city"
@@ -31,7 +30,7 @@ const Searcher = ({ handleSubmit }: SearcherProps) => {
           onFocus={(e) => setError(false)}
           onChange={(e) => {
             try {
-              const parsed = Form.parse(e.target.value);
+              const parsed = Form.parse(e.currentTarget.value);
               setFormData(parsed);
             } catch (e) {
               console.error("Parse failed");
@@ -39,8 +38,11 @@ const Searcher = ({ handleSubmit }: SearcherProps) => {
             }
           }}
         />
-        <input class="text-3xl py-2 px-6" type="submit" value="🔎" />
+        <input class="text-3xl py-2 px-6 md:px-24 hover:bg-gray-400 rounded-md" type="submit" value="🔎" />
       </fieldset>
+      <Show when={error()}>
+          <p class="text-red-700 p-2">Please enter a valid location</p>
+      </Show>
     </form>
   );
 };
