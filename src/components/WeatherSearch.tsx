@@ -11,7 +11,8 @@ const fetchWeatherData = async (
   city: FormType = "London",
   unit: string = "metric",
 ): Promise<WeatherDataType | null> => {
-  const baseUrl = import.meta.env.ENVIRONMENT === "prod" ? "https://astro.hasanhaja.com" : "http://localhost:3000";
+  // TODO Make this dynamically speak to the right env
+  const baseUrl = "https://astro.hasanhaja.com";
   try {
     const data = await fetch(
       `${baseUrl}/api/weather?city=${city}`,
