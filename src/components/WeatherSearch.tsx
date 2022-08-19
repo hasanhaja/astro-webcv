@@ -1,6 +1,7 @@
 import { createResource, createSignal, Suspense } from "solid-js";
 import type { FormType } from "../schema/Form";
 import { WeatherData, WeatherDataType } from "../schema/WeatherData";
+import LoadingSpinner from "./LoadingSpinner";
 import Searcher from "./Searcher";
 import WeatherCard from "./WeatherCard";
 
@@ -40,7 +41,13 @@ const WeatherSearch = (props: {baseUrl: string}) => {
       <Searcher
         handleSubmit={(data) => setFormData(data ?? null)}
       />
-      <Suspense fallback={<p class="text-lg italic">Submitting...</p>}>
+      <Suspense
+        fallback={
+          <div class="p-3 flex justify-center">
+            <LoadingSpinner />
+          </div>
+        }
+      >
         {weatherData() && <WeatherCard data={weatherData() ?? null} />}
       </Suspense>
     </div>
