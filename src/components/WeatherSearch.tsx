@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createResource, createSignal, Suspense } from "solid-js";
 import type { FormType } from "../schema/Form";
 import { WeatherData, WeatherDataType } from "../schema/WeatherData";
 import Searcher from "./Searcher";
@@ -32,24 +32,17 @@ const fetchWeatherData = async (
 };
 
 const WeatherSearch = () => {
-  const [data, setData] = createSignal<WeatherDataType | null>(null);
-  const [submitting, setSubmitting] = createSignal(false);
+  const [formData, setFormData] = createSignal<FormType | null>(null);
+  const [weatherData] = createResource(formData, (city) => fetchWeatherData(city));
 
   return (
     <div>
       <Searcher
-        handleSubmit={async (formData) => {
-          setSubmitting(true);
-          const resp = await fetchWeatherData(formData);
-          setSubmitting(false);
-          if (!resp) {
-            console.error("No data found");
-          }
-          setData(resp);
-        }}
+        handleSubmit={(data) => setFormData(data ?? null)}
       />
-      {submitting() ? <p class="text-lg italic">Submitting...</p> : null}
-      {data() ? <WeatherCard data={data()} /> : null}
+      <Suspense fallback={<p class="text-lg italic">Submitting...</p>}>
+        {weatherData() && <WeatherCard data={weatherData() ?? null} />}
+      </Suspense>
     </div>
   );
 };
