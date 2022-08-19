@@ -38,7 +38,7 @@ const Searcher = ({ handleSubmit }: SearcherProps) => {
             }
           }}
         />
-        <input class="text-3xl py-2 px-6 md:px-24 hover:bg-gray-400 rounded-md" type="submit" value="🔎" />
+        <input class="cursor-pointer text-3xl py-2 px-6 md:px-24 hover:bg-gray-400 rounded-md" type="submit" value="🔎" />
       </fieldset>
       <Show when={error()}>
           <p class="text-red-700 p-2">Please enter a valid location</p>
