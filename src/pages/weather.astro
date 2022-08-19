@@ -2,6 +2,8 @@
 import Content from "../components/Content.astro";
 import WeatherSearch from "../components/WeatherSearch";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const { origin } = Astro.url;
 ---
 
 <BaseLayout title="Weather">
@@ -9,5 +11,5 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <h1 class="text-2xl mb-2">🌤 Weather Search</h1>
     <p>What's the weather like? 🤔</p>
   </Content>
-  <WeatherSearch client:load/>
+  <WeatherSearch baseUrl={origin} client:load />
 </BaseLayout>
