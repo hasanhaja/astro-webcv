@@ -8,11 +8,10 @@ import WeatherCard from "./WeatherCard";
 
 // TODO better error handling
 const fetchWeatherData = async (
+  baseUrl: string,
   city: FormType = "London",
   unit: string = "metric",
 ): Promise<WeatherDataType | null> => {
-  // TODO Make this dynamically speak to the right env
-  const baseUrl = "https://astro.hasanhaja.com";
   try {
     const data = await fetch(
       `${baseUrl}/api/weather?city=${city}`,
@@ -32,9 +31,9 @@ const fetchWeatherData = async (
   }
 };
 
-const WeatherSearch = () => {
+const WeatherSearch = (props: {baseUrl: string}) => {
   const [formData, setFormData] = createSignal<FormType | null>(null);
-  const [weatherData] = createResource(formData, (city) => fetchWeatherData(city));
+  const [weatherData] = createResource(formData, (city) => fetchWeatherData(props.baseUrl, city));
 
   return (
     <div>
