@@ -27,6 +27,6 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: web-cv 
+          project: "web-cv" 
           entrypoint: server/entry.mjs
           root: dist
