@@ -6,18 +6,19 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/solid-js": "^1.0.0",
-    "@astrojs/tailwind": "^1.0.0",
-    "@astrojs/vercel": "^1.0.0",
-    "astro": "^1.0.6",
-    "solid-js": "^1.4.8"
+    "@astrojs/solid-js": "^2.0.2",
+    "@astrojs/tailwind": "^3.0.1",
+    "@astrojs/vercel": "^3.1.3",
+    "astro": "^2.0.14",
+    "solid-js": "^1.6.11"
   },
   "dependencies": {
-    "query-string": "^7.1.1",
-    "zod": "^3.18.0"
+    "@astrojs/deno": "^4.0.2",
+    "query-string": "^8.1.0",
+    "zod": "^3.20.6"
   }
 }
