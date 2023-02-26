@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 7.16.1
       - name: Clone repository
         uses: actions/checkout@v3
 
